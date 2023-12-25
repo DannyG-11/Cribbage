@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collections;
 public class Hand {
-
-
     private ArrayList<Card> hand;
+    private ArrayList<View> views;
 
     public Hand() {
         this.hand = new ArrayList<>();
+        this.views = new ArrayList<>();
     }
     public void addCard(Card card){
         this.hand.add(card);
@@ -25,8 +25,17 @@ public class Hand {
     public ArrayList<Card> getHand() {
         return hand;
     }
+    public void addViews(View view) {
+        views.add(view);
+    }
+    public void updateView(){
+        views.get(0).updatePlayerHand();
+    }
+    public void printBestHand(Hand hand, String points){
+        views.get(0).calculatedHand(hand.getHand(), points);
+    }
 
-    public static void calculateBestHand(Hand h){
+    public static ArrayList<Object> calculateBestHand(Hand h){
         ArrayList<Card> currentHand = h.getHand();
         Hand bestHand = new Hand();
         double bestValue = 0;
@@ -68,6 +77,11 @@ public class Hand {
         bestHand.printHand();
         String formattedValue = String.format("%.2f", bestValue);
         System.out.println("Resulting in an average of " + formattedValue + " points.");
+        //View.calculatedHand(bestHand.getHand(), formattedValue);
+        ArrayList<Object> values = new ArrayList<>();
+        values.add(bestHand);
+        values.add(formattedValue);
+        return values;
     }
     public static double points(ArrayList<Card> hand, Deck deck){
         double points = 0.0;

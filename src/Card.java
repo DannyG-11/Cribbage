@@ -1,6 +1,6 @@
 public class Card {
     public enum Suit {heart, diamond, club, spade}
-    public enum Value {one, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king}
+    public enum Value {ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king}
     private int suit;
     private int value;
 
